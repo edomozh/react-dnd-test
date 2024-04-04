@@ -18,7 +18,7 @@ const Task_: React.FC<Props> = ({
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    isDragging={snapshot.isDragging}
+                    $isDragging={snapshot.isDragging}
                 >
                     {task.title}
                 </TaskDiv>

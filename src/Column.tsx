@@ -19,7 +19,7 @@ const Column_: React.FC<Props> = ({
                 {(provided, snapshot) => (
                     <ColumnDiv
                         ref={provided.innerRef}
-                        isDraggingOver={snapshot.isDraggingOver}
+                        $isDraggingOver={snapshot.isDraggingOver}
                         {...provided.droppableProps}
                     >
                         <TitleDiv>task list</TitleDiv>

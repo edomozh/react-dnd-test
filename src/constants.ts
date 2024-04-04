@@ -8,11 +8,11 @@ border-radius: 5px;`;
 
 export const TitleDiv = styled(Div)`text-align: center;`;
 
-export const TaskDiv = styled(Div)<{ isDragging?: boolean }>`
-background-color: ${props => (props.isDragging ? 'lightGreen' : 'white')};`;
+export const TaskDiv = styled(Div)<{ $isDragging?: boolean }>`
+background-color: ${props => (props.$isDragging ? 'lightGreen' : 'white')};`;
 
-export const ColumnDiv = styled(Div)<{ isDraggingOver?: boolean }>`
-background-color: ${props => (props.isDraggingOver ? 'lightBlue' : 'white')};`;
+export const ColumnDiv = styled(Div)<{ $isDraggingOver?: boolean }>`
+background-color: ${props => (props.$isDraggingOver ? 'lightBlue' : 'white')};`;
 
 export interface TTask {
     id: string;
