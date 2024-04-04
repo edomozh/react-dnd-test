@@ -6,12 +6,19 @@ margin: 5px;
 border: 1px solid black; 
 border-radius: 5px;`;
 
+export const BoardDiv = styled(Div)`
+display: flex;
+flex-direction: row;
+border: none;
+height: 75vh`;
+
 export const TitleDiv = styled(Div)`text-align: center;`;
 
 export const TaskDiv = styled(Div)<{ $isDragging?: boolean }>`
 background-color: ${props => (props.$isDragging ? 'lightGreen' : 'white')};`;
 
 export const ColumnDiv = styled(Div)<{ $isDraggingOver?: boolean }>`
+flex: 1;
 background-color: ${props => (props.$isDraggingOver ? 'lightBlue' : 'white')};`;
 
 export interface TTask {
@@ -40,9 +47,19 @@ export const initialData = {
     columns: {
         "column-1": {
             id: 'column-1',
-            title: 'column-1 title',
+            title: 'To Do',
             taskIds: ['task-1', 'task-2', 'task-3']
-        }
+        },
+        "column-2": {
+            id: 'column-2',
+            title: 'In Progress',
+            taskIds: []
+        },
+        "column-3": {
+            id: 'column-3',
+            title: 'Done',
+            taskIds: []
+        },
     },
-    columnOrders: ['column-1']
+    columnOrders: ['column-1', 'column-2', 'column-3']
 };

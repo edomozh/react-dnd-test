@@ -13,22 +13,19 @@ const Column_: React.FC<Props> = ({
     tasks,
 }) => {
     return (
-        <Div>
-            <TitleDiv>{column.title}</TitleDiv>
-            <Droppable droppableId={column.id}>
-                {(provided, snapshot) => (
-                    <ColumnDiv
-                        ref={provided.innerRef}
-                        $isDraggingOver={snapshot.isDraggingOver}
-                        {...provided.droppableProps}
-                    >
-                        <TitleDiv>task list</TitleDiv>
-                        {tasks.map((task, index) => <Task key={task.id} index={index} task={task} />)}
-                        {provided.placeholder}
-                    </ColumnDiv>
-                )}
-            </Droppable>
-        </Div>
+        <Droppable droppableId={column.id}>
+            {(provided, snapshot) => (
+                <ColumnDiv
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    $isDraggingOver={snapshot.isDraggingOver}
+                >
+                    <TitleDiv>{column.title}</TitleDiv>
+                    {tasks.map((task, index) => <Task key={task.id} index={index} task={task} />)}
+                    {provided.placeholder}
+                </ColumnDiv>
+            )}
+        </Droppable>
     );
 }
 
