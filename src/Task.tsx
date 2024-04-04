@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, TTask } from "./constants";
+import { TaskDiv, TTask } from "./constants";
 import { Draggable } from "react-beautiful-dnd";
 
 type Props = {
@@ -13,14 +13,15 @@ const Task_: React.FC<Props> = ({
 }) => {
     return (
         <Draggable draggableId={task.id} index={index}>
-            {(provided) => (
-                <Div
+            {(provided, snapshot) => (
+                <TaskDiv
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
+                    isDragging={snapshot.isDragging}
                 >
                     {task.title}
-                </Div>
+                </TaskDiv>
             )}
         </Draggable>
     );

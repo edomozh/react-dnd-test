@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Div, TInitialData, initialData } from "./constants";
+import { TInitialData, initialData, TitleDiv } from "./constants";
 import { Column } from './Column'
 
 interface Props {
@@ -31,7 +31,7 @@ const App_: React.FC<Props> = ({
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Div>{title}</Div>
+      <TitleDiv>{title}</TitleDiv>
       {
         data.columnOrders.map((columnId) => {
           const column = data.columns[columnId];

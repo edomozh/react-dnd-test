@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
-import { Div, TColumn, TTask } from "./constants";
+import { ColumnDiv, Div, TColumn, TitleDiv, TTask } from "./constants";
 import { Task } from "./Task";
 
 type Props = {
@@ -14,17 +14,18 @@ const Column_: React.FC<Props> = ({
 }) => {
     return (
         <Div>
-            <Div>{column.title}</Div>
+            <TitleDiv>{column.title}</TitleDiv>
             <Droppable droppableId={column.id}>
-                {(provided) => (
-                    <Div
+                {(provided, snapshot) => (
+                    <ColumnDiv
                         ref={provided.innerRef}
+                        isDraggingOver={snapshot.isDraggingOver}
                         {...provided.droppableProps}
                     >
-                        <p>task list</p>
+                        <TitleDiv>task list</TitleDiv>
                         {tasks.map((task, index) => <Task key={task.id} index={index} task={task} />)}
                         {provided.placeholder}
-                    </Div>
+                    </ColumnDiv>
                 )}
             </Droppable>
         </Div>
