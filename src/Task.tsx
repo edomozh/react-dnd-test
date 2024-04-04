@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, TTask } from "./constants.ts";
+import { Div, TTask } from "./constants";
 import { Draggable } from "react-beautiful-dnd";
 
 type Props = {
@@ -19,7 +19,7 @@ const Task_: React.FC<Props> = ({
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                 >
-                    {task.content}
+                    {task.title}
                 </Div>
             )}
         </Draggable>

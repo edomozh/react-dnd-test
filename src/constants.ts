@@ -4,20 +4,26 @@ export const Div = styled.div`padding: 5px; margin: 5px; border: 1px solid black
 
 export interface TTask {
     id: string;
-    content: string;
+    title: string;
 };
 
 export interface TColumn {
     id: string;
     title: string;
-    taskIds: number[];
+    taskIds: string[];
 };
+
+export interface TInitialData {
+    tasks: { [taskId: string]: TTask };
+    columns: { [columnId: string]: TColumn };
+    columnOrders: string[];
+}
 
 export const initialData = {
     tasks: {
-        "task-1": { id: 'task-1', content: 'task-1 content' },
-        "task-2": { id: 'task-2', content: 'task-2 content' },
-        "task-3": { id: 'task-3', content: 'task-3 content' },
+        "task-1": { id: 'task-1', title: 'task-1 content' },
+        "task-2": { id: 'task-2', title: 'task-2 content' },
+        "task-3": { id: 'task-3', title: 'task-3 content' },
     },
     columns: {
         "column-1": {

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Div, initialData } from "./constants.ts";
-import { Column } from './Column.tsx'
+import { Div, TInitialData, initialData } from "./constants";
+import { Column } from './Column'
 
 interface Props {
   title: string;
@@ -10,7 +10,7 @@ interface Props {
 const App_: React.FC<Props> = ({
   title,
 }) => {
-  const [data, setData] = useState(initialData);
+  const [data, setData] = useState<TInitialData>(initialData);
 
   const onDragEnd = useCallback(() => {
     debugger;
