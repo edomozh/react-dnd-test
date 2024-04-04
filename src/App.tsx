@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Div, initialData } from "./constants.ts";
 import { Column } from './Column.tsx'
+
 interface Props {
   title: string;
 };
