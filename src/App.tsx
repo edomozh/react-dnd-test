@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
-import { TInitialData, initialData, TitleDiv, BoardDiv } from "./constants";
+import { DragDropContext, OnDragEndResponder } from "react-beautiful-dnd";
+import { TInitialData, initialData, BoardDiv } from "./constants";
 import { Column } from './Column'
 
 interface Props {
@@ -12,7 +12,7 @@ const App_: React.FC<Props> = ({
 }) => {
   const [data, setData] = useState<TInitialData>(initialData);
 
-  const onDragEnd = useCallback((result: any) => {
+  const onDragEnd : OnDragEndResponder = useCallback((result) => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return;
