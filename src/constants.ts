@@ -1,23 +1,29 @@
 import styled from 'styled-components';
 
 
-export const InputText = styled.input`
-  padding: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-`;
+export const InputText = styled.input<{ $caption?: string }>`
+width: 500px;
+margin-top: 20px;
+margin-left: 15px;
+padding: 5px;
+font-size: 16px;
+border: 1px solid black;
+border-radius: 5px;`;
 
-export const Button = styled.button`
-  padding: 5px;
-  font-size: 16px;
-  background-color: #ccc;
-  color: #000;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-`;
+export const InputButton = styled.button<{ $text?: string }>`
+width: 100px;
+margin-top: 20px;
+margin-left: 15px;
+padding: 5px;
+font-size: 14px;
+background-color: #eee;
+color: #000;
+border: 1px solid black;
+border-radius: 5px;
+cursor: pointer;
+&:hover {
+    background-color: #ccc;
+}`;
 
 export const Div = styled.div`
 padding: 5px; 
@@ -65,16 +71,12 @@ export interface TInitialData {
 }
 
 export const initialData = {
-    tasks: {
-        "task-1": { id: 'task-1', title: 'task-1 content' },
-        "task-2": { id: 'task-2', title: 'task-2 content' },
-        "task-3": { id: 'task-3', title: 'task-3 content' },
-    },
+    tasks: {},
     columns: {
         "column-1": {
             id: 'column-1',
             title: 'To Do',
-            taskIds: ['task-1', 'task-2', 'task-3']
+            taskIds: []
         },
         "column-2": {
             id: 'column-2',
