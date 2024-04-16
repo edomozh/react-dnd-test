@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { DragDropContext, OnDragEndResponder } from "react-beautiful-dnd";
+import { DragDropContext, Droppable, OnDragEndResponder } from "react-beautiful-dnd";
 import { TInitialData, initialData, BoardDiv } from "./constants";
 import { Column } from './Column'
 
@@ -12,10 +12,20 @@ const App_: React.FC<Props> = ({
 }) => {
   const [data, setData] = useState<TInitialData>(initialData);
 
-  const onDragEnd : OnDragEndResponder = useCallback((result) => {
-    const { destination, source, draggableId } = result;
+  const onDragEnd: OnDragEndResponder = useCallback((result) => {
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) return;
+
+    if (type === 'column') {
+      const newColumnOrder = [...data.columnOrders];
+      newColumnOrder.splice(source.index, 1);
+      newColumnOrder.splice(destination.index, 0, draggableId);
+
+      const newData = { ...data, columnOrders: newColumnOrder };
+      setData(newData);
+      return;
+    }
 
     const start = data.columns[source.droppableId];
     const finish = data.columns[destination.droppableId];
@@ -54,18 +64,24 @@ const App_: React.FC<Props> = ({
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <BoardDiv>
-        {
-          data.columnOrders.map((columnId) => {
-            const column = data.columns[columnId];
-            const tasks = column.taskIds.map((taskId) => data.tasks[taskId]);
+      <Droppable droppableId="board" direction="horizontal" type="column">
+        {(provided) => (
+          <BoardDiv
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {data.columnOrders.map((columnId, index) => {
+              const column = data.columns[columnId];
+              const tasks = column.taskIds.map((taskId) => data.tasks[taskId]);
 
-            return (
-              <Column key={column.id} column={column} tasks={tasks} />
-            )
-          })
-        }
-      </BoardDiv>
+              return (
+                <Column key={column.id} column={column} tasks={tasks} index={index} />
+              )
+            })}
+            {provided.placeholder}
+          </BoardDiv>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 }
