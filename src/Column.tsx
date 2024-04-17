@@ -45,7 +45,7 @@ const Column_: React.FC<Props> = ({
                     </Droppable>
                 </FlexDiv>
             )}
-        </Draggable >
+        </Draggable>
     );
 }
 
